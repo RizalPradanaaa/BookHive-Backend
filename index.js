@@ -2,8 +2,11 @@ import express from "express";
 import dotenv from "dotenv";
 import router from "./routes/BookRoute.js";
 import mongoose from "mongoose";
+import fileUpload from "express-fileupload";
 
 const app = express();
+app.use(fileUpload());
+app.use(express.static("public"));
 app.use(router);
 
 dotenv.config();
