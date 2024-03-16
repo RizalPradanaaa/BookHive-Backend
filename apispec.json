@@ -1,0 +1,244 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "BookHave RESTful Api",
+    "description": "API Spec for BookHave RESTful API",
+    "version": "1.0.0"
+  },
+  "servers": [{ "url": "http://localhost:8080" }],
+  "paths": {
+    "/books": {
+      "get": {
+        "tags": ["BookHave API"],
+        "description": "List all Books",
+        "summary": "List all books",
+        "responses": {
+          "200": {
+            "description": "Success get all categories",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "number"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "count": {
+                      "type": "integer"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Books"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["BookHave API"],
+        "description": "Create new Book",
+        "summary": "Create new book",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateBook"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success create Category",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "number"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Books"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/books/{bookId}": {
+      "get": {
+        "tags": ["BookHave API"],
+        "description": "Get book by Id",
+        "summary": "Get book by Id",
+        "parameters": [
+          {
+            "name": "bookId",
+            "in": "path",
+            "description": "book Id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success get book",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "number"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Books"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["BookHave API"],
+        "description": "Update book by Id",
+        "summary": "update book by Id",
+        "parameters": [
+          {
+            "name": "bookId",
+            "in": "path",
+            "description": "book Id"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrUpdateBook"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success update book",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "number"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/Books"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["BookHave API"],
+        "description": "Delete book by Id",
+        "summary": "Delete book by Id",
+        "parameters": [
+          {
+            "name": "bookId",
+            "in": "path",
+            "description": "book Id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success delete book",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "number"
+                    },
+                    "status": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Books": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "integer"
+          },
+          "title": {
+            "type": "string"
+          },
+          "author": {
+            "type": "string"
+          },
+          "publisYear": {
+            "type": "integer"
+          },
+          "description": {
+            "type": "string"
+          },
+          "cover": {
+            "type": "string"
+          }
+        }
+      },
+      "CreateOrUpdateBook": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "author": {
+            "type": "string"
+          },
+          "publisYear": {
+            "type": "integer"
+          },
+          "description": {
+            "type": "string"
+          },
+          "cover": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
