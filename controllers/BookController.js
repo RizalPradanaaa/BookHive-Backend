@@ -1,5 +1,6 @@
 import path from "path";
 import { Book } from "../model/BookModel.js";
+import { Types } from "mongoose";
 
 export const getAllBooks = async (request, response) => {
   try {
@@ -57,5 +58,24 @@ export const saveBook = async (request, response) => {
   } catch (error) {
     console.log(error);
     response.status(500).send({ message: error.message });
+  }
+};
+
+export const getBookById = async (request, response) => {
+  try {
+    const id = request.params.id;
+
+    // Periksa apakah ID yang diberikan adalah ObjectId yang valid
+    if (!Types.ObjectId.isValid(id)) {
+      return response.status(400).json({ message: "Invalid book ID" });
+    }
+
+    const book = await Book.findById(id);
+
+    if (!book) return response.status(404).json({ message: "Book not found" });
+
+    return response.status(200).json(book);
+  } catch (error) {
+    return response.status(500).send({ message: error.message });
   }
 };
