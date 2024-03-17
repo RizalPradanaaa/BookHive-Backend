@@ -3,6 +3,7 @@ import {
   getAllBooks,
   getBookById,
   saveBook,
+  updateBook,
 } from "../controllers/BookController.js";
 
 const router = express.Router();
@@ -15,5 +16,6 @@ router.get("/", (request, response) => {
 router.get("/books", getAllBooks);
 router.post("/books", saveBook);
 router.get("/books/:id", getBookById);
+router.put("/books/:id", updateBook);
 
 export default router;
