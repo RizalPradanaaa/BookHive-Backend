@@ -3,11 +3,15 @@ import dotenv from "dotenv";
 import router from "./routes/BookRoute.js";
 import mongoose from "mongoose";
 import fileUpload from "express-fileupload";
+import cors from "cors";
 
 const app = express();
 app.use(fileUpload());
 app.use(express.static("public"));
 app.use(router);
+
+// Middleware for handling CORS POLICY
+app.use(cors);
 
 dotenv.config();
 const Port = process.env.PORT;
