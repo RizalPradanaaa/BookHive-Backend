@@ -143,3 +143,30 @@ export const updateBook = async (request, response) => {
     return response.status(500).send({ message: error.message });
   }
 };
+
+export const deleteBook = async (request, response) => {
+  const { id } = request.params;
+
+  // Periksa apakah ID yang diberikan adalah ObjectId yang valid
+  if (!Types.ObjectId.isValid(id))
+    return response.status(400).json({ message: "Invalid book ID" });
+
+  const book = await Book.findById(id);
+  if (!book) return response.status(404).json({ message: "Book not found" });
+
+  try {
+    // Delete imaage
+    let oldfile = book.cover;
+    const oldfileName = oldfile.split("/").pop();
+    const filepath = `./public/images/${oldfileName}`;
+    fs.unlinkSync(filepath);
+
+    // Delete book
+    await Book.findByIdAndDelete(id);
+
+    return response.status(200).send({ message: "Book deleted successfully" });
+  } catch (error) {
+    console.log(error.message);
+    response.status(500).send({ message: error.message });
+  }
+};
