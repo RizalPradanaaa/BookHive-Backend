@@ -6,12 +6,11 @@ import fileUpload from "express-fileupload";
 import cors from "cors";
 
 const app = express();
+// Middleware for handling CORS POLICY
+app.use(cors());
 app.use(fileUpload());
 app.use(express.static("public"));
 app.use(router);
-
-// Middleware for handling CORS POLICY
-app.use(cors);
 
 dotenv.config();
 const Port = process.env.PORT;
