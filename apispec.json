@@ -20,15 +20,6 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "code": {
-                      "type": "number"
-                    },
-                    "status": {
-                      "type": "string"
-                    },
-                    "count": {
-                      "type": "integer"
-                    },
                     "data": {
                       "type": "array",
                       "items": {
@@ -214,6 +205,9 @@
           "description": {
             "type": "string"
           },
+          "source": {
+            "type": "string"
+          },
           "cover": {
             "type": "string"
           }
@@ -232,6 +226,9 @@
             "type": "integer"
           },
           "description": {
+            "type": "string"
+          },
+          "source": {
             "type": "string"
           },
           "cover": {

@@ -42,6 +42,7 @@ export const saveBook = async (request, response) => {
       author: request.body.author,
       publishYear: request.body.publishYear,
       description: request.body.description,
+      source: request.body.source,
       cover: url,
     };
 
@@ -127,6 +128,7 @@ export const updateBook = async (request, response) => {
     author: request.body.author,
     publishYear: request.body.publishYear,
     description: request.body.description,
+    source: request.body.source,
     cover: coverUrl,
   };
 
